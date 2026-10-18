@@ -48,6 +48,17 @@ $ EXTRA_CFLAGS="-O3 -g -Wno-error=unused-command-line-argument -matomics -mbulk-
   docker exec -it build-qemu-wasm emmake make -j $(nproc) qemu-system-riscv64
 ```
 
+### Building for simplos (lazyscript.com)
+
+The build lazyscript.com's simplos page boots differs from the ones above: it draws to a canvas
+through SDL, and its heap starts at 512 MiB and may grow to 2 GiB, because the page sizes the heap
+for the guest RAM a visitor picks. [`build-simplos.sh`](./build-simplos.sh) builds it and says
+which flags the page depends on:
+
+```console
+$ ./build-simplos.sh out-simplos
+```
+
 ## Examples
 
 ### Running QEMU on browser (x86_64 guest)
